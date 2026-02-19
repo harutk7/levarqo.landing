@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       const nav = document.querySelector('nav');
@@ -12,20 +14,31 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <nav>
       <div className="container">
         <a href="#" className="logo">
           <img src="/liftapp.png" alt="Levarqo" className="logo-img" />
         </a>
-        <ul className="nav-links">
-          <li><a href="#deployment">Deployment</a></li>
-          <li><a href="#model">Our Model</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#contact" className="nav-cta">Book a Demo</a></li>
+        <ul className={`nav-links${menuOpen ? ' open' : ''}`}>
+          <li><a href="#deployment" onClick={closeMenu}>Deployment</a></li>
+          <li><a href="#model" onClick={closeMenu}>Our Model</a></li>
+          <li><a href="#features" onClick={closeMenu}>Features</a></li>
+          <li><a href="#pricing" onClick={closeMenu}>Pricing</a></li>
+          <li><a href="#contact" className="nav-cta" onClick={closeMenu}>Book a Demo</a></li>
         </ul>
-        <button className="mobile-menu-btn" aria-label="Menu">
+        <button
+          className={`mobile-menu-btn${menuOpen ? ' active' : ''}`}
+          aria-label="Menu"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
           <span></span><span></span><span></span>
         </button>
       </div>
