@@ -27,8 +27,7 @@ export default function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <a href="#" className="logo">
-              <div className="logo-mark"></div>
-              Levarqo
+              <img src="/liftapp.png" alt="Levarqo" className="logo-img" />
             </a>
             <p>Secure AI financial data analysis. On your hardware or ours. Your data never leaves your control.</p>
           </div>

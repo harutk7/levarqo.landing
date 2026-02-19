@@ -16,8 +16,7 @@ export default function Navbar() {
     <nav>
       <div className="container">
         <a href="#" className="logo">
-          <div className="logo-mark"></div>
-          Levarqo
+          <img src="/liftapp.png" alt="Levarqo" className="logo-img" />
         </a>
         <ul className="nav-links">
           <li><a href="#deployment">Deployment</a></li>
